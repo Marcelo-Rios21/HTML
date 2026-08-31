@@ -121,7 +121,13 @@ footer {
 
 /* Diseño responsivo */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .lista-productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -129,7 +135,7 @@ footer {
     }
 
     .lista-productos {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     #productos {
