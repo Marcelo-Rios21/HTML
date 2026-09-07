@@ -11,6 +11,7 @@
 
 <body>
 
+    <!-- Cabecera -->
     <header id="inicio">
         <h1>GameStore</h1>
         <p>Tu tienda de videojuegos.</p>
@@ -76,30 +77,47 @@
             <span class="visually-hidden">Siguiente</span>
         </button>
     </div>
-    <section id="productos">
-        <h2>Productos destacados</h2>
+    <!-- Productos destacados -->
+    <section id="productos" class="container my-5">
+        <h2 class="text-center mb-4">Productos destacados</h2>
 
-        <ul class="lista-productos">
-            <li class="producto">
-                <h3>League of Legends</h3>
-                <img src="img/lol-portada.jpg" alt="League of Legends" width="250">
-                <p>Videojuego de estrategia y competición por equipos.</p>
-            </li>
+        <div class="row g-4">
+            <article class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="img/lol-portada.jpg" class="card-img-top producto-img" alt="League of Legends">
 
-            <li class="producto"> 
-                <h3>Tennis Manager 25</h3>
-                <img src="img/tennis-portada.jpg" alt="Tennis Manager 25" width="250">
-                <p>Videojuego de gestión en el que puedes dirigir la carrera de jugadores de tenis.</p>
-            </li>
+                    <div class="card-body">
+                        <h3 class="card-title">League of Legends</h3>
+                        <p class="card-text">Videojuego de estrategia y competición por equipos.</p>
+                    </div>
+                </div>
+            </article>
 
-            <li class="producto">
-                <h3>RimWorld</h3>
-                <img src="img/rimworld-portada.jpg" alt="RimWorld" width="250">
-                <p>Videojuego de simulación y gestión de una colonia de supervivientes.</p>
-            </li>
-        </ul>
+            <article class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="img/tennis-portada.jpg" class="card-img-top producto-img" alt="Tennis Manager 25">
+
+                    <div class="card-body">
+                        <h3 class="card-title">Tennis Manager 25</h3>
+                        <p class="card-text">Videojuego de gestión en el que puedes dirigir la carrera de jugadores de tenis.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="img/rimworld-portada.jpg" class="card-img-top producto-img" alt="RimWorld">
+
+                    <div class="card-body">
+                        <h3 class="card-title">RimWorld</h3>
+                        <p class="card-text">Videojuego de simulación y gestión de una colonia de supervivientes.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
     </section>
 
+    <!-- Pie de pagina -->
     <footer id="contacto">
         <p>Contacto: contacto@gamestore.cl</p>
         <p><a href="https://www.instagram.com/">Instagram</a></p>
