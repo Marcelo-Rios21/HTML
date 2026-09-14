@@ -2,47 +2,72 @@
 
 Sitio web responsivo para una tienda de videojuegos desarrollado como actividad de Desarrollo Frontend I.
 
-## Tecnologias utilizadas
+## Tecnologías utilizadas
 
 - HTML5
 - CSS3
 - Bootstrap 5
+- JavaScript
+- Fetch API
+- JSON
 
 ## Componentes Bootstrap
 
 - Navbar responsiva y colapsable
-- Carousel automatico cada 3 segundos
+- Carousel automático cada 3 segundos
 - Sistema Grid responsivo
-- Cards para presentar los productos
+- Cards para presentar productos
 
-## Diseño responsivo
+## Interactividad con JavaScript
 
-La distribucion de las tarjetas utiliza el sistema Grid de Bootstrap:
+El sitio incorpora manipulación del DOM y eventos mediante JavaScript:
 
-- Movil: 1 tarjeta por fila (col-12)
-- Tablet: 2 tarjetas por fila (col-md-6)
-- Escritorio: 3 tarjetas por fila (col-lg-4)
+- Creación dinámica de elementos con `createElement`
+- Inserción de elementos con `appendChild`
+- Evento `click` para mostrar y ocultar detalles de productos
+- Evento `mouseover` para resaltar tarjetas
+- Evento `submit` para validar el formulario sin recargar la página
+- Modificación dinámica de textos, clases y contenido
 
-## Productos
+## Fetch API
 
-- League of Legends
-- Tennis Manager 25
-- RimWorld
+Los juegos recomendados se cargan desde:
+
+`data/juegos.json`
+
+JavaScript utiliza Fetch API para obtener los datos y generar dinámicamente las tarjetas de:
+
+- XCOM 2
+- Stardew Valley
+- Civilization VI
+
+La carga incluye manejo de errores mediante `try/catch` y comprobación de la respuesta HTTP.
+
+## Organización del JavaScript
+
+El código está dividido en funciones con responsabilidades específicas:
+
+- `crearMensajeDinamico()`
+- `configurarDetallesProductos()`
+- `configurarEventoMouseover()`
+- `configurarFormulario()`
+- `crearTarjetaRecomendada()`
+- `cargarJuegosRecomendados()`
 
 ## Sitio publicado
 
 https://Marcelo-Rios21.github.io/HTML/
 
-## Evidencias
+## Evidencias de interactividad
 
-### Escritorio
+### Eventos en productos
 
-![Vista escritorio](capturas/escritorio.png)
+![Eventos producto](capturas/eventos_productos.png)
 
-### Tablet
+### Validación del formulario
 
-![Vista tablet](capturas/tablet.png)
+![Formulario validado](capturas/formulario-valido.png)
 
-### Movil
+### Juegos cargados mediante Fetch API
 
-![Vista movil](capturas/movil.png)
+![Fetch juegos](capturas/fetch-juegos.png)
