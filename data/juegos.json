@@ -1,0 +1,17 @@
+[
+    {
+        "nombre": "XCOM 2",
+        "genero": "Estrategia",
+        "descripcion": "Juego de estrategia por turnos centrado en la resistencia humana frente a una ocupación alienígena."
+    },
+    {
+        "nombre": "Stardew Valley",
+        "genero": "Simulación",
+        "descripcion": "Juego de simulación y gestión donde puedes desarrollar una granja y relacionarte con una comunidad."
+    },
+    {
+        "nombre": "Civilization VI",
+        "genero": "Estrategia",
+        "descripcion": "Juego de estrategia por turnos donde desarrollas una civilización desde sus orígenes hasta la era moderna."
+    }
+]
