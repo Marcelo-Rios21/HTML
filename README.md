@@ -13,7 +13,8 @@ Sitio web responsivo para una tienda de videojuegos desarrollado como actividad 
 
 ## Componentes Bootstrap
 
-- Navbar responsiva y colapsable
+- Navbar responsiva y colapsable con categorías simuladas
+- Formulario de búsqueda integrado en la navegación
 - Carousel automático cada 3 segundos
 - Sistema Grid responsivo
 - Cards para presentar productos
@@ -24,22 +25,29 @@ El sitio incorpora manipulación del DOM y eventos mediante JavaScript:
 
 - Creación dinámica de elementos con `createElement`
 - Inserción de elementos con `appendChild`
-- Evento `click` para mostrar y ocultar detalles de productos
-- Evento `mouseover` para resaltar tarjetas
-- Evento `submit` para validar el formulario sin recargar la página
-- Modificación dinámica de textos, clases y contenido
+- Evento `click` para agregar productos al carrito
+- Eventos `click` para filtrar productos por categoría
+- Evento `submit` para buscar productos sin recargar la página
+- Evento `submit` para validar el formulario de contacto
+- Actualización dinámica del resumen, cantidades y total del carrito
+- Mensajes dinámicos para búsquedas sin resultados y errores de carga
 
 ## Fetch API
 
-Los juegos recomendados se cargan desde:
+El catálogo de productos se carga desde:
 
 `data/juegos.json`
 
 JavaScript utiliza Fetch API para obtener los datos y generar dinámicamente las tarjetas de:
 
-- XCOM 2
+- League of Legends
+- Tennis Manager 25
+- RimWorld
+- XCOM 2 Collection
 - Stardew Valley
 - Civilization VI
+
+Cada producto incluye nombre, categoría, precio, imagen y descripción.
 
 La carga incluye manejo de errores mediante `try/catch` y comprobación de la respuesta HTTP.
 
@@ -47,27 +55,39 @@ La carga incluye manejo de errores mediante `try/catch` y comprobación de la re
 
 El código está dividido en funciones con responsabilidades específicas:
 
-- `crearMensajeDinamico()`
-- `configurarDetallesProductos()`
-- `configurarEventoMouseover()`
+- `formatearPrecio()`
+- `crearTarjetaProducto()`
+- `mostrarProductos()`
+- `mostrarErrorCarga()`
+- `agregarAlCarrito()`
+- `mostrarCarrito()`
 - `configurarFormulario()`
-- `crearTarjetaRecomendada()`
-- `cargarJuegosRecomendados()`
+- `cargarProductos()`
+- `configurarBusqueda()`
+- `configurarCategorias()`
 
 ## Sitio publicado
 
 https://Marcelo-Rios21.github.io/HTML/
 
-## Evidencias de interactividad
+## Evidencias de la versión actual
 
-### Eventos en productos
+### Catálogo de productos
 
-![Eventos producto](capturas/eventos_productos.png)
+![Catálogo eCommerce](capturas/catalogo-ecommerce.png)
 
-### Validación del formulario
+### Búsqueda de productos
+
+![Búsqueda de productos](capturas/busqueda-productos.png)
+
+### Carrito de compras
+
+![Carrito de compras](capturas/carrito-compras.png)
+
+### Diseño responsivo
+
+![Vista responsive](capturas/responsive-ecommerce.png)
+
+### Validación del formulario de contacto
 
 ![Formulario validado](capturas/formulario-valido.png)
-
-### Juegos cargados mediante Fetch API
-
-![Fetch juegos](capturas/fetch-juegos.png)
