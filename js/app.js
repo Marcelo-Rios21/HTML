@@ -160,6 +160,39 @@ function mostrarCarrito() {
     contenedor.appendChild(lista);
     contenedor.appendChild(totalCarrito);
 }
+// Valida el formulario de contacto y muestra el resultado sin recargar la página.
+function configurarFormulario() {
+    const formulario = document.querySelector("#contactoForm");
+
+    if (!formulario) {
+        return;
+    }
+
+    const resultado = document.createElement("div");
+    resultado.className = "mt-3";
+    formulario.appendChild(resultado);
+
+    formulario.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+
+        const nombre = formulario.querySelector("#nombre").value.trim();
+        const correo = formulario.querySelector("#correo").value.trim();
+        const mensaje = formulario.querySelector("#mensaje").value.trim();
+
+        const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+
+        if (!nombre || !correoValido || !mensaje) {
+            resultado.className = "alert alert-danger mt-3";
+            resultado.textContent = "Completa todos los campos e ingresa un correo válido.";
+            return;
+        }
+
+        resultado.className = "alert alert-success mt-3";
+        resultado.textContent = `Gracias, ${nombre}. Tu mensaje fue validado correctamente.`;
+
+        formulario.reset();
+    });
+}
 // Obtiene el catalogo desde JSON y lo muestra dinamicamente.
 async function cargarProductos() {
     try {
@@ -219,4 +252,5 @@ function configurarCategorias() {
 cargarProductos();
 configurarBusqueda();
 configurarCategorias();
+configurarFormulario();
 mostrarCarrito();
