@@ -59,6 +59,14 @@ function mostrarProductos(lista) {
     const contenedor = document.querySelector("#lista-productos");
     contenedor.innerHTML = "";
 
+    if (lista.length === 0) {
+        const mensaje = document.createElement("div");
+        mensaje.className = "alert alert-info";
+        mensaje.textContent = "No se encontraron productos.";
+        contenedor.appendChild(mensaje);
+        return;
+    }
+
     lista.forEach((producto) => {
         contenedor.appendChild(crearTarjetaProducto(producto));
     });
@@ -92,4 +100,45 @@ async function cargarProductos() {
     }
 }
 
+// Procesa el formulario de búsqueda y filtra los productos por nombre.
+function configurarBusqueda() {
+    const formulario = document.querySelector("#form-busqueda");
+    const campoBusqueda = document.querySelector("#buscar-producto");
+
+    formulario.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+
+        const texto = campoBusqueda.value.trim().toLowerCase();
+
+        if (!texto) {
+            mostrarProductos(productos);
+            return;
+        }
+
+        const resultados = productos.filter((producto) =>
+            producto.nombre.toLowerCase().includes(texto)
+        );
+
+        mostrarProductos(resultados);
+    });
+}
+
+// Permite filtrar el catálogo mediante las categorías de la barra de navegación.
+function configurarCategorias() {
+    const categorias = document.querySelectorAll(".categoria-link");
+
+    categorias.forEach((enlace) => {
+        enlace.addEventListener("click", () => {
+            const categoria = enlace.dataset.categoria;
+
+            const resultados = productos.filter(
+                (producto) => producto.categoria === categoria
+            );
+
+            mostrarProductos(resultados);
+        });
+    });
+}
 cargarProductos();
+configurarBusqueda();
+configurarCategorias();

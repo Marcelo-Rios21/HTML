@@ -32,7 +32,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarGameStore">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#inicio">Inicio</a>
                     </li>
@@ -40,9 +40,23 @@
                         <a class="nav-link" href="#productos">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
+                        <a class="nav-link categoria-link" href="#productos" data-categoria="Estrategia">Estrategia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link categoria-link" href="#productos" data-categoria="Simulación">Simulación</a>
                     </li>
                 </ul>
+
+                <form id="form-busqueda" class="d-flex mt-3 mt-lg-0" role="search">
+                    <label class="visually-hidden" for="buscar-producto">Buscar producto</label>
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        id="buscar-producto"
+                        placeholder="Buscar producto"
+                        aria-label="Buscar producto">
+                    <button class="btn btn-outline-light" type="submit">Buscar</button>
+                </form>
             </div>
         </div>
     </nav>
