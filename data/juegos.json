@@ -1,17 +1,50 @@
 [
     {
-        "nombre": "XCOM 2",
-        "genero": "Estrategia",
+        "id": 1,
+        "nombre": "League of Legends",
+        "categoria": "Estrategia",
+        "precio": 0,
+        "imagen": "img/lol-portada.jpg",
+        "descripcion": "Videojuego de estrategia y competición por equipos."
+    },
+    {
+        "id": 2,
+        "nombre": "Tennis Manager 25",
+        "categoria": "Simulación",
+        "precio": 24990,
+        "imagen": "img/tennis-portada.jpg",
+        "descripcion": "Videojuego de gestión en el que puedes dirigir la carrera de jugadores de tenis."
+    },
+    {
+        "id": 3,
+        "nombre": "RimWorld",
+        "categoria": "Simulación",
+        "precio": 19990,
+        "imagen": "img/rimworld-portada.jpg",
+        "descripcion": "Videojuego de simulación y gestión de una colonia de supervivientes."
+    },
+    {
+        "id": 4,
+        "nombre": "XCOM 2 Collection",
+        "categoria": "Estrategia",
+        "precio": 15990,
+        "imagen": "img/xcom2collection-portada.jpg",
         "descripcion": "Juego de estrategia por turnos centrado en la resistencia humana frente a una ocupación alienígena."
     },
     {
+        "id": 5,
         "nombre": "Stardew Valley",
-        "genero": "Simulación",
+        "categoria": "Simulación",
+        "precio": 9990,
+        "imagen": "img/stardewvalley-portada.jpg",
         "descripcion": "Juego de simulación y gestión donde puedes desarrollar una granja y relacionarte con una comunidad."
     },
     {
+        "id": 6,
         "nombre": "Civilization VI",
-        "genero": "Estrategia",
+        "categoria": "Estrategia",
+        "precio": 17990,
+        "imagen": "img/civilizationvi-portada.avif",
         "descripcion": "Juego de estrategia por turnos donde desarrollas una civilización desde sus orígenes hasta la era moderna."
     }
 ]
