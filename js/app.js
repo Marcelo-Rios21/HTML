@@ -1,6 +1,9 @@
 // Almacena los productos obtenidos desde el archivo JSON.
 let productos = [];
 
+// Almacena los productos agregados al carrito.
+let carrito = [];
+
 // Formatea un precio numerico para mostrarlo en pesos chilenos.
 function formatearPrecio(precio) {
     if (precio === 0) {
@@ -42,10 +45,20 @@ function crearTarjetaProducto(producto) {
     precio.className = "fw-bold mt-auto";
     precio.textContent = formatearPrecio(producto.precio);
 
+    const botonCarrito = document.createElement("button");
+    botonCarrito.type = "button";
+    botonCarrito.className = "btn btn-primary";
+    botonCarrito.textContent = "Agregar al carrito";
+
+    botonCarrito.addEventListener("click", () => {
+        agregarAlCarrito(producto.id);
+    });
+
     cuerpo.appendChild(titulo);
     cuerpo.appendChild(categoria);
     cuerpo.appendChild(descripcion);
     cuerpo.appendChild(precio);
+    cuerpo.appendChild(botonCarrito);
 
     tarjeta.appendChild(imagen);
     tarjeta.appendChild(cuerpo);
@@ -83,6 +96,70 @@ function mostrarErrorCarga() {
     contenedor.appendChild(mensaje);
 }
 
+// Agrega un producto al carrito o aumenta su cantidad si ya existe.
+function agregarAlCarrito(idProducto) {
+    const producto = productos.find((item) => item.id === idProducto);
+
+    if (!producto) {
+        return;
+    }
+
+    const productoEnCarrito = carrito.find(
+        (item) => item.id === idProducto
+    );
+
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+    } else {
+        carrito.push({
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            cantidad: 1
+        });
+    }
+
+    mostrarCarrito();
+}
+
+// Actualiza dinámicamente el resumen y total del carrito.
+function mostrarCarrito() {
+    const contenedor = document.querySelector("#resumen-carrito .card-body");
+    contenedor.innerHTML = "";
+
+    if (carrito.length === 0) {
+        const mensaje = document.createElement("p");
+        mensaje.className = "mb-0";
+        mensaje.textContent = "El carrito está vacío.";
+        contenedor.appendChild(mensaje);
+        return;
+    }
+
+    const lista = document.createElement("ul");
+    lista.className = "list-group list-group-flush mb-3";
+
+    let total = 0;
+
+    carrito.forEach((producto) => {
+        const item = document.createElement("li");
+        item.className = "list-group-item d-flex justify-content-between";
+
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+        item.textContent =
+            `${producto.nombre} x${producto.cantidad} - ${formatearPrecio(subtotal)}`;
+
+        lista.appendChild(item);
+    });
+
+    const totalCarrito = document.createElement("p");
+    totalCarrito.className = "fw-bold text-end mb-0";
+    totalCarrito.textContent = `Total: ${formatearPrecio(total)}`;
+
+    contenedor.appendChild(lista);
+    contenedor.appendChild(totalCarrito);
+}
 // Obtiene el catalogo desde JSON y lo muestra dinamicamente.
 async function cargarProductos() {
     try {
@@ -142,3 +219,4 @@ function configurarCategorias() {
 cargarProductos();
 configurarBusqueda();
 configurarCategorias();
+mostrarCarrito();
