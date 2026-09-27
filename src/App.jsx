@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import ListaProductos from "./components/ListaProductos.jsx";
+import Carrito from "./components/Carrito.jsx";
 
 function App() {
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [errorCarga, setErrorCarga] = useState(false);
+    const [carrito, setCarrito] = useState([]);
 
     useEffect(() => {
         async function cargarProductos() {
@@ -27,15 +29,36 @@ function App() {
 
         cargarProductos();
     }, []);
+
+    function agregarAlCarrito(producto) {
+        setCarrito((actual) => {
+            const existe = actual.some((item) => item.id === producto.id);
+
+            if (existe) {
+                return actual.map((item) =>
+                    item.id === producto.id
+                        ? { ...item, cantidad: item.cantidad + 1 }
+                        : item
+                );
+            }
+
+            return [...actual, { ...producto, cantidad: 1 }];
+        });
+    }
+
+    function eliminarDelCarrito(id) {
+        setCarrito((actual) =>
+            actual.filter((producto) => producto.id !== id)
+        );
+    }
+
     return (
         <>
-            {/* Cabecera */}
             <header id="inicio">
                 <h1>GameStore</h1>
                 <p>Tu tienda de videojuegos.</p>
             </header>
 
-            {/* Navegacion */}
             <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#inicio">GameStore</a>
@@ -96,7 +119,6 @@ function App() {
                 </div>
             </nav>
 
-            {/* Carrusel */}
             <div
                 id="carouselProductos"
                 className="carousel slide"
@@ -136,7 +158,6 @@ function App() {
                 </button>
             </div>
 
-            {/* Productos */}
             <section id="productos" className="container my-5">
                 <h2 className="text-center mb-4">Productos</h2>
                 {cargando ? (
@@ -146,21 +167,15 @@ function App() {
         No fue posible cargar los productos.
     </div>
 ) : (
-    <ListaProductos productos={productos} />
+    <ListaProductos productos={productos} onAgregar={agregarAlCarrito} />
 )}
             </section>
 
-            {/* Carrito */}
             <section id="carrito" className="container my-5">
                 <h2 className="text-center mb-4">Carrito de compras</h2>
-                <div className="card">
-                    <div className="card-body" aria-live="polite">
-                        <p className="mb-0">El carrito está vacío.</p>
-                    </div>
-                </div>
+                <Carrito carrito={carrito} onEliminar={eliminarDelCarrito} />
             </section>
 
-            {/* Contacto */}
             <section id="formulario-contacto" className="container my-5">
                 <h2 className="text-center mb-4">Contacto</h2>
 
@@ -188,7 +203,6 @@ function App() {
                 </form>
             </section>
 
-            {/* Pie de pagina */}
             <footer id="contacto">
                 <p>Contacto: contacto@gamestore.cl</p>
                 <p><a href="https://www.instagram.com/">Instagram</a></p>

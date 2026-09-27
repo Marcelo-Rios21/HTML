@@ -1,8 +1,6 @@
-function formatearPrecio(precio) {
-    return precio === 0 ? "Gratis" : `$${precio.toLocaleString("es-CL")}`;
-}
+import { formatearPrecio } from "../utils/precios.js";
 
-function ProductoCard({ producto }) {
+function ProductoCard({ producto, onAgregar }) {
     const enOferta = producto.precioOferta < producto.precio;
 
     return (
@@ -28,6 +26,13 @@ function ProductoCard({ producto }) {
                             Precio oferta: {formatearPrecio(producto.precioOferta)}
                         </p>
                     </div>
+                    <button
+                        type="button"
+                        className="btn btn-primary mt-3"
+                        onClick={() => onAgregar(producto)}
+                    >
+                        Agregar al carrito
+                    </button>
                 </div>
             </div>
         </article>
