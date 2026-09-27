@@ -7,6 +7,10 @@ function App() {
     const [cargando, setCargando] = useState(true);
     const [errorCarga, setErrorCarga] = useState(false);
     const [carrito, setCarrito] = useState([]);
+    const [textoBusqueda, setTextoBusqueda] = useState("");
+    const [filtroBusqueda, setFiltroBusqueda] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [resultadoContacto, setResultadoContacto] = useState(null);
 
     useEffect(() => {
         async function cargarProductos() {
@@ -52,6 +56,39 @@ function App() {
         );
     }
 
+
+    const productosVisibles = productos.filter((producto) =>
+        (!categoria || producto.categoria === categoria) &&
+        producto.nombre.toLowerCase().includes(filtroBusqueda.toLowerCase())
+    );
+
+    function validarContacto(evento) {
+        evento.preventDefault();
+
+        const formulario = evento.currentTarget;
+        const datos = new FormData(formulario);
+        const nombre = datos.get("nombre").trim();
+        const correo = datos.get("correo").trim();
+        const mensaje = datos.get("mensaje").trim();
+
+        const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+
+        if (!nombre || !correoValido || !mensaje) {
+            setResultadoContacto({
+                tipo: "danger",
+                mensaje: "Completa todos los campos e ingresa un correo v\u00e1lido."
+            });
+            return;
+        }
+
+        setResultadoContacto({
+            tipo: "success",
+            mensaje: "Gracias, " + nombre + ". Tu mensaje fue validado correctamente."
+        });
+
+        formulario.reset();
+    }
+
     return (
         <>
             <header id="inicio">
@@ -81,15 +118,41 @@ function App() {
                                 <a className="nav-link" href="#inicio">Inicio</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#productos">Productos</a>
+                                <a
+                                    className="nav-link"
+                                    href="#productos"
+                                    onClick={() => {
+                                        setCategoria("");
+                                        setTextoBusqueda("");
+                                        setFiltroBusqueda("");
+                                    }}
+                                >
+                                    Productos
+                                </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link categoria-link" href="#productos">
+                                <a
+                                    className="nav-link categoria-link"
+                                    href="#productos"
+                                    onClick={() => {
+                                        setCategoria("Estrategia");
+                                        setTextoBusqueda("");
+                                        setFiltroBusqueda("");
+                                    }}
+                                >
                                     Estrategia
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link categoria-link" href="#productos">
+                                <a
+                                    className="nav-link categoria-link"
+                                    href="#productos"
+                                    onClick={() => {
+                                        setCategoria("Simulación");
+                                        setTextoBusqueda("");
+                                        setFiltroBusqueda("");
+                                    }}
+                                >
                                     Simulación
                                 </a>
                             </li>
@@ -99,7 +162,11 @@ function App() {
                             id="form-busqueda"
                             className="d-flex mt-3 mt-lg-0"
                             role="search"
-                            onSubmit={(evento) => evento.preventDefault()}
+                            onSubmit={(evento) => {
+                                evento.preventDefault();
+                                setCategoria("");
+                                setFiltroBusqueda(textoBusqueda.trim());
+                            }}
                         >
                             <label className="visually-hidden" htmlFor="buscar-producto">
                                 Buscar producto
@@ -110,6 +177,8 @@ function App() {
                                 id="buscar-producto"
                                 placeholder="Buscar producto"
                                 aria-label="Buscar producto"
+                                value={textoBusqueda}
+                                onChange={(evento) => setTextoBusqueda(evento.target.value)}
                             />
                             <button className="btn btn-outline-light" type="submit">
                                 Buscar
@@ -167,7 +236,7 @@ function App() {
         No fue posible cargar los productos.
     </div>
 ) : (
-    <ListaProductos productos={productos} onAgregar={agregarAlCarrito} />
+    <ListaProductos productos={productosVisibles} onAgregar={agregarAlCarrito} />
 )}
             </section>
 
@@ -182,7 +251,7 @@ function App() {
                 <form
                     id="contactoForm"
                     noValidate
-                    onSubmit={(evento) => evento.preventDefault()}
+                    onSubmit={validarContacto}
                 >
                     <div className="mb-3">
                         <label htmlFor="nombre" className="form-label">Nombre</label>
@@ -200,6 +269,15 @@ function App() {
                     </div>
 
                     <button type="submit" className="btn btn-primary">Enviar</button>
+
+                    {resultadoContacto && (
+                        <div
+                            className={"alert alert-" + resultadoContacto.tipo + " mt-3"}
+                            role="status"
+                        >
+                            {resultadoContacto.mensaje}
+                        </div>
+                    )}
                 </form>
             </section>
 
