@@ -1,4 +1,32 @@
+import { useEffect, useState } from "react";
+import ListaProductos from "./components/ListaProductos.jsx";
+
 function App() {
+    const [productos, setProductos] = useState([]);
+    const [cargando, setCargando] = useState(true);
+    const [errorCarga, setErrorCarga] = useState(false);
+
+    useEffect(() => {
+        async function cargarProductos() {
+            try {
+                const respuesta = await fetch(`${import.meta.env.BASE_URL}data/juegos.json`);
+
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
+                const datos = await respuesta.json();
+                setProductos(datos);
+            } catch (error) {
+                console.error("Error al cargar productos:", error);
+                setErrorCarga(true);
+            } finally {
+                setCargando(false);
+            }
+        }
+
+        cargarProductos();
+    }, []);
     return (
         <>
             {/* Cabecera */}
@@ -111,7 +139,15 @@ function App() {
             {/* Productos */}
             <section id="productos" className="container my-5">
                 <h2 className="text-center mb-4">Productos</h2>
-                <div className="row g-4"></div>
+                {cargando ? (
+    <p>Cargando productos...</p>
+) : errorCarga ? (
+    <div className="alert alert-danger">
+        No fue posible cargar los productos.
+    </div>
+) : (
+    <ListaProductos productos={productos} />
+)}
             </section>
 
             {/* Carrito */}
