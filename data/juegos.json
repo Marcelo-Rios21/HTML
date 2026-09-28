@@ -5,7 +5,8 @@
         "categoria": "Estrategia",
         "precio": 0,
         "imagen": "img/lol-portada.jpg",
-        "descripcion": "Videojuego de estrategia y competición por equipos."
+        "descripcion": "Videojuego de estrategia y competición por equipos.",
+        "precioOferta": 0
     },
     {
         "id": 2,
@@ -13,7 +14,8 @@
         "categoria": "Simulación",
         "precio": 24990,
         "imagen": "img/tennis-portada.jpg",
-        "descripcion": "Videojuego de gestión en el que puedes dirigir la carrera de jugadores de tenis."
+        "descripcion": "Videojuego de gestión en el que puedes dirigir la carrera de jugadores de tenis.",
+        "precioOferta": 19990
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "categoria": "Simulación",
         "precio": 19990,
         "imagen": "img/rimworld-portada.jpg",
-        "descripcion": "Videojuego de simulación y gestión de una colonia de supervivientes."
+        "descripcion": "Videojuego de simulación y gestión de una colonia de supervivientes.",
+        "precioOferta": 16990
     },
     {
         "id": 4,
@@ -29,7 +32,8 @@
         "categoria": "Estrategia",
         "precio": 15990,
         "imagen": "img/xcom2collection-portada.jpg",
-        "descripcion": "Juego de estrategia por turnos centrado en la resistencia humana frente a una ocupación alienígena."
+        "descripcion": "Juego de estrategia por turnos centrado en la resistencia humana frente a una ocupación alienígena.",
+        "precioOferta": 12990
     },
     {
         "id": 5,
@@ -37,7 +41,8 @@
         "categoria": "Simulación",
         "precio": 9990,
         "imagen": "img/stardewvalley-portada.jpg",
-        "descripcion": "Juego de simulación y gestión donde puedes desarrollar una granja y relacionarte con una comunidad."
+        "descripcion": "Juego de simulación y gestión donde puedes desarrollar una granja y relacionarte con una comunidad.",
+        "precioOferta": 7990
     },
     {
         "id": 6,
@@ -45,6 +50,7 @@
         "categoria": "Estrategia",
         "precio": 17990,
         "imagen": "img/civilizationvi-portada.avif",
-        "descripcion": "Juego de estrategia por turnos donde desarrollas una civilización desde sus orígenes hasta la era moderna."
+        "descripcion": "Juego de estrategia por turnos donde desarrollas una civilización desde sus orígenes hasta la era moderna.",
+        "precioOferta": 14990
     }
 ]
