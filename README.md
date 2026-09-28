@@ -10,6 +10,27 @@ Sitio web responsivo para una tienda de videojuegos desarrollado como actividad 
 - JavaScript
 - Fetch API
 - JSON
+- React
+- Vite
+
+## Aplicación React
+
+La versión actual utiliza componentes funcionales y Hooks (`useState` y `useEffect`) para gestionar el catálogo, los filtros y el carrito de compras.
+
+El catálogo presenta precios normales y de oferta. El carrito permite agregar y eliminar productos, acumular cantidades y calcular automáticamente el total.
+
+### Ejecución local
+
+```bash
+npm install
+npm run dev
+```
+
+Para generar la versión de producción:
+
+```bash
+npm run build
+```
 
 ## Componentes Bootstrap
 
@@ -19,26 +40,24 @@ Sitio web responsivo para una tienda de videojuegos desarrollado como actividad 
 - Sistema Grid responsivo
 - Cards para presentar productos
 
-## Interactividad con JavaScript
+## Interactividad con React
 
-El sitio incorpora manipulación del DOM y eventos mediante JavaScript:
+La aplicación utiliza componentes funcionales, props y Hooks (`useState` y `useEffect`).
 
-- Creación dinámica de elementos con `createElement`
-- Inserción de elementos con `appendChild`
-- Evento `click` para agregar productos al carrito
-- Eventos `click` para filtrar productos por categoría
-- Evento `submit` para buscar productos sin recargar la página
-- Evento `submit` para validar el formulario de contacto
-- Actualización dinámica del resumen, cantidades y total del carrito
-- Mensajes dinámicos para búsquedas sin resultados y errores de carga
+- Carga del catálogo mediante Fetch API.
+- Búsqueda y filtros por categoría.
+- Eventos `onClick`, `onChange` y `onSubmit`.
+- Carrito con agregar, eliminar, contador y total.
+- Renderizado condicional para ofertas, carrito vacío y búsquedas sin resultados.
+- Validación local del formulario de contacto.
 
 ## Fetch API
 
 El catálogo de productos se carga desde:
 
-`data/juegos.json`
+`public/data/juegos.json`
 
-JavaScript utiliza Fetch API para obtener los datos y generar dinámicamente las tarjetas de:
+React utiliza Fetch API para cargar los datos desde JSON y generar las tarjetas mediante componentes reutilizables:
 
 - League of Legends
 - Tennis Manager 25
@@ -47,47 +66,41 @@ JavaScript utiliza Fetch API para obtener los datos y generar dinámicamente las
 - Stardew Valley
 - Civilization VI
 
-Cada producto incluye nombre, categoría, precio, imagen y descripción.
+Cada producto incluye nombre, categoría, precio normal, precio de oferta, imagen y descripción.
 
 La carga incluye manejo de errores mediante `try/catch` y comprobación de la respuesta HTTP.
 
-## Organización del JavaScript
+## Organización del proyecto
 
-El código está dividido en funciones con responsabilidades específicas:
-
-- `formatearPrecio()`
-- `crearTarjetaProducto()`
-- `mostrarProductos()`
-- `mostrarErrorCarga()`
-- `agregarAlCarrito()`
-- `mostrarCarrito()`
-- `configurarFormulario()`
-- `cargarProductos()`
-- `configurarBusqueda()`
-- `configurarCategorias()`
+- `src/App.jsx`: componente principal, estados y eventos.
+- `src/main.jsx`: punto de entrada de React.
+- `src/components/`: componentes de productos y carrito.
+- `src/utils/precios.js`: funciones reutilizables de precios.
+- `public/data/juegos.json`: catálogo de productos.
+- `public/img/`: imágenes de videojuegos.
+- `css/style.css`: estilos personalizados.
+- `vite.config.js`: configuración de Vite.
 
 ## Sitio publicado
 
 https://Marcelo-Rios21.github.io/HTML/
 
-## Evidencias de la versión actual
+## Evidencias
 
 ### Catálogo de productos
-
-![Catálogo eCommerce](capturas/catalogo-ecommerce.png)
-
-### Búsqueda de productos
-
-![Búsqueda de productos](capturas/busqueda-productos.png)
+![Catálogo React](capturas/catalogo_react.png)
 
 ### Carrito de compras
+![Carrito React](capturas/carrito_react.png)
 
-![Carrito de compras](capturas/carrito-compras.png)
+### Carrito vacío
+![Carrito vacío](capturas/carrito_vacio.png)
 
-### Diseño responsivo
+### Búsqueda de productos
+![Búsqueda válida](capturas/busqueda_valida.png)
 
-![Vista responsive](capturas/responsive-ecommerce.png)
+### Búsqueda sin resultados
+![Sin resultados](capturas/sin_resultados.png)
 
-### Validación del formulario de contacto
-
-![Formulario validado](capturas/formulario-valido.png)
+### Validación del formulario
+![Formulario React](capturas/formulario_react.png)
