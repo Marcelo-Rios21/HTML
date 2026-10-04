@@ -12,6 +12,7 @@ function App() {
     const [categoria, setCategoria] = useState("");
     const [resultadoContacto, setResultadoContacto] = useState(null);
 
+    // Carga el catalogo desde el archivo JSON.
     useEffect(() => {
         async function cargarProductos() {
             try {
@@ -34,6 +35,7 @@ function App() {
         cargarProductos();
     }, []);
 
+    // Agrega un producto o incrementa su cantidad.
     function agregarAlCarrito(producto) {
         setCarrito((actual) => {
             const existe = actual.some((item) => item.id === producto.id);
@@ -57,6 +59,7 @@ function App() {
     }
 
 
+    // Filtra el catalogo segun busqueda y categoria.
     const productosVisibles = productos.filter((producto) =>
         (!categoria || producto.categoria === categoria) &&
         producto.nombre.toLowerCase().includes(filtroBusqueda.toLowerCase())
@@ -236,7 +239,7 @@ function App() {
         No fue posible cargar los productos.
     </div>
 ) : (
-    <ListaProductos productos={productosVisibles} onAgregar={agregarAlCarrito} />
+    <ListaProductos productos={productosVisibles} carrito={carrito} onAgregar={agregarAlCarrito} />
 )}
             </section>
 

@@ -1,6 +1,6 @@
 import ProductoCard from "./ProductoCard.jsx";
 
-function ListaProductos({ productos, onAgregar }) {
+function ListaProductos({ productos, carrito, onAgregar }) {
     if (productos.length === 0) {
         return (
             <div className="alert alert-info">
@@ -12,7 +12,7 @@ function ListaProductos({ productos, onAgregar }) {
     return (
         <div className="row g-4">
             {productos.map((producto) => (
-                <ProductoCard key={producto.id} producto={producto} onAgregar={onAgregar} />
+                <ProductoCard key={producto.id} producto={producto} cantidadEnCarrito={carrito.find((item) => item.id === producto.id)?.cantidad ?? 0} onAgregar={onAgregar} />
             ))}
         </div>
     );

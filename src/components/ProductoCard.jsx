@@ -1,6 +1,6 @@
 import { formatearPrecio } from "../utils/precios.js";
 
-function ProductoCard({ producto, onAgregar }) {
+function ProductoCard({ producto, cantidadEnCarrito, onAgregar }) {
     const enOferta = producto.precioOferta < producto.precio;
 
     return (
@@ -28,10 +28,10 @@ function ProductoCard({ producto, onAgregar }) {
                     </div>
                     <button
                         type="button"
-                        className="btn btn-primary mt-3"
+                        className={`btn ${cantidadEnCarrito > 0 ? "btn-success" : "btn-primary"} mt-3`}
                         onClick={() => onAgregar(producto)}
                     >
-                        Agregar al carrito
+                        {cantidadEnCarrito > 0 ? "En el carrito (+1)" : "Agregar al carrito"}
                     </button>
                 </div>
             </div>
