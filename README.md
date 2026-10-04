@@ -47,7 +47,7 @@ La aplicación utiliza componentes funcionales, props y Hooks (`useState` y `use
 - Carga del catálogo mediante Fetch API.
 - Búsqueda y filtros por categoría.
 - Eventos `onClick`, `onChange` y `onSubmit`.
-- Carrito con agregar, eliminar, contador y total.
+- Carrito con agregar, eliminar, contador y total; los botones del catálogo cambian según si el producto está en el carrito.
 - Renderizado condicional para ofertas, carrito vacío y búsquedas sin resultados.
 - Validación local del formulario de contacto.
 
@@ -88,10 +88,13 @@ https://Marcelo-Rios21.github.io/HTML/
 ## Evidencias
 
 ### Catálogo de productos
-![Catálogo React](capturas/catalogo_react.png)
+![Catálogo React](capturas/catalogo_dinamico.png)
 
 ### Carrito de compras
-![Carrito React](capturas/carrito_react.png)
+![Carrito React](capturas/carrito_s8.png)
+
+### Renderizado condicional
+![Renderizado condicional](capturas/renderizado_condicional_s8.png)
 
 ### Carrito vacío
 ![Carrito vacío](capturas/carrito_vacio.png)
