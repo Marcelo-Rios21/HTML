@@ -3,6 +3,7 @@ import ListaProductos from "./components/ListaProductos.jsx";
 import Carrito from "./components/Carrito.jsx";
 import Navbar from "./components/Navbar.jsx";
 import FormularioContacto from "./components/FormularioContacto.jsx";
+import GestionCatalogo from "./components/GestionCatalogo.jsx";
 
 function App() {
     const [productos, setProductos] = useState([]);
@@ -55,6 +56,27 @@ function App() {
     }
 
     function eliminarDelCarrito(id) {
+        setCarrito((actual) =>
+            actual.filter((producto) => producto.id !== id)
+        );
+    }
+    // Agrega y elimina videojuegos del catalogo usando el estado.
+    function agregarProducto(producto) {
+        setProductos((actual) => {
+            const siguienteId =
+                actual.length === 0
+                    ? 1
+                    : Math.max(...actual.map((item) => item.id)) + 1;
+
+            return [...actual, { ...producto, id: siguienteId }];
+        });
+    }
+
+    function eliminarProducto(id) {
+        setProductos((actual) =>
+            actual.filter((producto) => producto.id !== id)
+        );
+
         setCarrito((actual) =>
             actual.filter((producto) => producto.id !== id)
         );
@@ -157,10 +179,16 @@ function App() {
         No fue posible cargar los productos.
     </div>
 ) : (
-    <ListaProductos productos={productosVisibles} carrito={carrito} onAgregar={agregarAlCarrito} />
+    <ListaProductos
+        productos={productosVisibles}
+        carrito={carrito}
+        onAgregar={agregarAlCarrito}
+        onEliminarProducto={eliminarProducto}
+    />
 )}
             </section>
 
+            <GestionCatalogo onAgregarProducto={agregarProducto} />
             <section id="carrito" className="container my-5">
                 <h2 className="text-center mb-4">Carrito de compras</h2>
                 <Carrito carrito={carrito} onEliminar={eliminarDelCarrito} />

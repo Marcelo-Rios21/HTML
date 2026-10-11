@@ -1,6 +1,6 @@
 import { formatearPrecio } from "../utils/precios.js";
 
-function ProductoCard({ producto, cantidadEnCarrito, onAgregar }) {
+function ProductoCard({ producto, cantidadEnCarrito, onAgregar, onEliminarProducto }) {
     const enOferta = producto.precioOferta < producto.precio;
 
     return (
@@ -32,6 +32,12 @@ function ProductoCard({ producto, cantidadEnCarrito, onAgregar }) {
                         onClick={() => onAgregar(producto)}
                     >
                         {cantidadEnCarrito > 0 ? "En el carrito (+1)" : "Agregar al carrito"}
+                    </button>                    <button
+                        type="button"
+                        className="btn btn-outline-danger mt-2"
+                        onClick={() => onEliminarProducto(producto.id)}
+                    >
+                        Eliminar del catalogo
                     </button>
                 </div>
             </div>
