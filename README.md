@@ -17,7 +17,7 @@ Sitio web responsivo para una tienda de videojuegos desarrollado como actividad 
 
 La versión actual utiliza componentes funcionales y Hooks (`useState` y `useEffect`) para gestionar el catálogo, los filtros y el carrito de compras.
 
-El catálogo presenta precios normales y de oferta. El carrito permite agregar y eliminar productos, acumular cantidades y calcular automáticamente el total.
+El catálogo presenta precios normales y de oferta. También permite agregar y eliminar videojuegos dinámicamente mediante el estado de React. El carrito permite agregar y eliminar productos, acumular cantidades y calcular automáticamente el total.
 
 ### Ejecución local
 
@@ -34,7 +34,7 @@ npm run build
 
 ## Componentes Bootstrap
 
-- Navbar responsiva y colapsable con categorías simuladas
+- Navbar responsiva y colapsable con filtros por categoría
 - Formulario de búsqueda integrado en la navegación
 - Carousel automático cada 3 segundos
 - Sistema Grid responsivo
@@ -46,6 +46,7 @@ La aplicación utiliza componentes funcionales, props y Hooks (`useState` y `use
 
 - Carga del catálogo mediante Fetch API.
 - Búsqueda y filtros por categoría.
+- Gestión dinámica del catálogo para agregar y eliminar videojuegos mediante `useState`.
 - Eventos `onClick`, `onChange` y `onSubmit`.
 - Carrito con agregar, eliminar, contador y total; los botones del catálogo cambian según si el producto está en el carrito.
 - Renderizado condicional para ofertas, carrito vacío y búsquedas sin resultados.
@@ -74,12 +75,26 @@ La carga incluye manejo de errores mediante `try/catch` y comprobación de la re
 
 - `src/App.jsx`: componente principal, estados y eventos.
 - `src/main.jsx`: punto de entrada de React.
-- `src/components/`: componentes de productos y carrito.
+- `src/components/`: componentes de navegación, productos, gestión del catálogo, carrito y formulario de contacto.
 - `src/utils/precios.js`: funciones reutilizables de precios.
 - `public/data/juegos.json`: catálogo de productos.
 - `public/img/`: imágenes de videojuegos.
 - `css/style.css`: estilos personalizados.
 - `vite.config.js`: configuración de Vite.
+
+## Uso del sitio
+
+- Usa la barra de navegación para acceder a las secciones y filtrar videojuegos por categoría.
+- Utiliza el buscador para localizar videojuegos por nombre.
+- En Gestión del catálogo puedes agregar o eliminar videojuegos durante la sesión actual.
+- Usa `Agregar al carrito` para incorporar productos y aumentar sus cantidades.
+- Desde el carrito puedes revisar el total acumulado y eliminar productos.
+- El formulario de contacto valida nombre, correo y mensaje antes de aceptar el envío.
+- Al recargar la página, el catálogo vuelve a cargarse desde `public/data/juegos.json`.
+
+## Pruebas realizadas
+
+Se verificaron la carga dinámica del catálogo, búsqueda, filtros, gestión de videojuegos, carrito, formulario de contacto, navegación, carrusel, diseño responsivo y compilación de producción con Vite.
 
 ## Sitio publicado
 
