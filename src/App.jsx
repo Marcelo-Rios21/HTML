@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ListaProductos from "./components/ListaProductos.jsx";
 import Carrito from "./components/Carrito.jsx";
+import Navbar from "./components/Navbar.jsx";
+import FormularioContacto from "./components/FormularioContacto.jsx";
 
 function App() {
     const [productos, setProductos] = useState([]);
@@ -99,98 +101,14 @@ function App() {
                 <p>Tu tienda de videojuegos.</p>
             </header>
 
-            <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#inicio">GameStore</a>
+            <Navbar
+                textoBusqueda={textoBusqueda}
+                setTextoBusqueda={setTextoBusqueda}
+                setCategoria={setCategoria}
+                setFiltroBusqueda={setFiltroBusqueda}
+            />
 
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarGameStore"
-                        aria-controls="navbarGameStore"
-                        aria-expanded="false"
-                        aria-label="Mostrar navegacion"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarGameStore">
-                        <ul className="navbar-nav me-auto">
-                            <li className="nav-item">
-                                <a className="nav-link" href="#inicio">Inicio</a>
-                            </li>
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link"
-                                    href="#productos"
-                                    onClick={() => {
-                                        setCategoria("");
-                                        setTextoBusqueda("");
-                                        setFiltroBusqueda("");
-                                    }}
-                                >
-                                    Productos
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link categoria-link"
-                                    href="#productos"
-                                    onClick={() => {
-                                        setCategoria("Estrategia");
-                                        setTextoBusqueda("");
-                                        setFiltroBusqueda("");
-                                    }}
-                                >
-                                    Estrategia
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link categoria-link"
-                                    href="#productos"
-                                    onClick={() => {
-                                        setCategoria("Simulación");
-                                        setTextoBusqueda("");
-                                        setFiltroBusqueda("");
-                                    }}
-                                >
-                                    Simulación
-                                </a>
-                            </li>
-                        </ul>
-
-                        <form
-                            id="form-busqueda"
-                            className="d-flex mt-3 mt-lg-0"
-                            role="search"
-                            onSubmit={(evento) => {
-                                evento.preventDefault();
-                                setCategoria("");
-                                setFiltroBusqueda(textoBusqueda.trim());
-                            }}
-                        >
-                            <label className="visually-hidden" htmlFor="buscar-producto">
-                                Buscar producto
-                            </label>
-                            <input
-                                className="form-control me-2"
-                                type="search"
-                                id="buscar-producto"
-                                placeholder="Buscar producto"
-                                aria-label="Buscar producto"
-                                value={textoBusqueda}
-                                onChange={(evento) => setTextoBusqueda(evento.target.value)}
-                            />
-                            <button className="btn btn-outline-light" type="submit">
-                                Buscar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-
+            <main>
             <div
                 id="carouselProductos"
                 className="carousel slide"
@@ -248,41 +166,12 @@ function App() {
                 <Carrito carrito={carrito} onEliminar={eliminarDelCarrito} />
             </section>
 
-            <section id="formulario-contacto" className="container my-5">
-                <h2 className="text-center mb-4">Contacto</h2>
+            <FormularioContacto
+                validarContacto={validarContacto}
+                resultadoContacto={resultadoContacto}
+            />
 
-                <form
-                    id="contactoForm"
-                    noValidate
-                    onSubmit={validarContacto}
-                >
-                    <div className="mb-3">
-                        <label htmlFor="nombre" className="form-label">Nombre</label>
-                        <input type="text" className="form-control" id="nombre" name="nombre" />
-                    </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="correo" className="form-label">Correo</label>
-                        <input type="email" className="form-control" id="correo" name="correo" />
-                    </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="mensaje" className="form-label">Mensaje</label>
-                        <textarea className="form-control" id="mensaje" name="mensaje" rows="4"></textarea>
-                    </div>
-
-                    <button type="submit" className="btn btn-primary">Enviar</button>
-
-                    {resultadoContacto && (
-                        <div
-                            className={"alert alert-" + resultadoContacto.tipo + " mt-3"}
-                            role="status"
-                        >
-                            {resultadoContacto.mensaje}
-                        </div>
-                    )}
-                </form>
-            </section>
+            </main>
 
             <footer id="contacto">
                 <p>Contacto: contacto@gamestore.cl</p>

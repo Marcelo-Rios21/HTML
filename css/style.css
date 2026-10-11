@@ -15,9 +15,8 @@ body {
 header {
     background-color: #20232a;
     color: white;
-    padding: 30px 20px;
+    padding: 20px;
     text-align: center;
-    border-bottom: 4px solid #5865f2;
 }
 
 header h1 {
@@ -26,32 +25,17 @@ header h1 {
 }
 
 header p {
-    margin: 10px 0 0;
+    margin: 5px 0 0;
 }
 
 /* Navegacion */
 
-nav {
+.navbar {
     background-color: #2c2f36;
-    padding: 15px;
 }
 
-nav ul {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-}
-
-nav a:hover {
-    text-decoration: underline;
+.navbar .container {
+    max-width: 1100px;
 }
 
 /* Carrusel */
@@ -125,11 +109,6 @@ footer a {
         gap: 10px;
     }
 
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
 
     #productos {
         width: 95%;
